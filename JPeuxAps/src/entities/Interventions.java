@@ -16,7 +16,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="jpa01_interventions")
+@Table(name="interventions")
 public class Interventions implements Cloneable{
 
 	@Id
@@ -40,10 +40,10 @@ public class Interventions implements Cloneable{
 	@Temporal(TemporalType.DATE)
 	private Date date_etat;
 	
-	@OneToMany(mappedBy = "depanneurs", cascade = { CascadeType.ALL })
+	@OneToMany(mappedBy = "interventions", cascade = { CascadeType.ALL })
 	private Set<Depanneurs> depanneurs = new HashSet<Depanneurs>();
 	
-	@OneToMany(mappedBy = "clients", cascade = { CascadeType.ALL })
+	@OneToMany(mappedBy = "interventions", cascade = { CascadeType.ALL })
 	private Set<Clients> clients = new HashSet<Clients>();
 	
 	
