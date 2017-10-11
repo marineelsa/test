@@ -14,7 +14,7 @@
 
 			<!-- connexion JDBC -->
 			<property name="hibernate.connection.driver_class" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-			<property name="hibernate.connection.url" value="jdbc:sqlserver://localhost:1433;databaseName=PostBadDeDonnees" />
+			<property name="hibernate.connection.url" value="jdbc:sqlserver://localhost:1433;databaseName=PostBad2Donnees" />
 			<property name="hibernate.connection.username" value="sa" />
 			<property name="hibernate.connection.password" value="Pa$$w0rd" />
 			<!-- création automatique du schéma -->

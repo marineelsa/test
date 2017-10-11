@@ -7,9 +7,12 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -24,6 +27,8 @@ public class Interventions implements Cloneable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
+
+	
 
 	@Column(name = "URGENCE", nullable = false)
 	private Integer urgence;
@@ -43,8 +48,12 @@ public class Interventions implements Cloneable{
 	@OneToMany(mappedBy = "interventions", cascade = { CascadeType.ALL })
 	private Set<Depanneurs> depanneurs = new HashSet<Depanneurs>();
 	
-	@OneToMany(mappedBy = "interventions", cascade = { CascadeType.ALL })
-	private Set<Clients> clients = new HashSet<Clients>();
+
+	
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name = "id", nullable = true)
+	private Clients clients;
 	
 	
 	public Integer getId() {
@@ -94,24 +103,24 @@ public class Interventions implements Cloneable{
 	public void setDepanneurs(Set<Depanneurs> depanneurs) {
 		this.depanneurs = depanneurs;
 	}
-
-	public Set<Clients> getClients() {
+	
+	public Clients getClients() {
 		return clients;
 	}
 
-	public void setClients(Set<Clients> clients) {
+	public void setClients(Clients clients) {
 		this.clients = clients;
 	}
 
-	
+
+
 	// constructeurs
 		public Interventions() {
 		}
 		
-
-		
-		public Interventions(Integer urgence, Date demande, String etat,
-				Date date_etat, Set<Depanneurs> depanneurs, Set<Clients> clients) {
+		public Interventions(Integer urgence, Date demande,
+				String etat, Date date_etat, Set<Depanneurs> depanneurs,
+				Clients clients) {
 			super();
 			this.urgence = urgence;
 			this.demande = demande;
@@ -120,6 +129,7 @@ public class Interventions implements Cloneable{
 			this.depanneurs = depanneurs;
 			this.clients = clients;
 		}
+
 
 
 	        
